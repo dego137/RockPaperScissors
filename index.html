@@ -1,0 +1,59 @@
+<script>
+    console.log("hello world")
+    //declare states
+    const options=['rock','paper','scissors']
+    //user should pick and type an option among rock,paper,scissors
+    function getHumanChoice(){
+        let option= prompt('What do you wanna pick?(rock,paper,scissors)')
+        option.toLocaleLowerCase()
+        return option
+    }
+    //computer should random pick and show an option
+    function getComputerChoice (){
+        let ind=Math.floor(Math.random()*3)
+        return options[ind]
+    }
+    //program should show a result an give a winner 
+    function playGame(){
+        let humanScore=0
+        let computerScore=0
+        for (let i=0;i<5;i++){
+            const humanSelection = getHumanChoice();
+            const computerSelection = getComputerChoice();
+            const winner=playRound(humanSelection, computerSelection)
+            if(winner===0){
+                computerScore++
+            }else if(winner===1){
+                humanScore++
+            }
+            if(humanScore===3){
+                console.log("you win!!")
+                break;
+            }else if (computerScore===3)
+            {
+                console.log("computer win!!")
+                break;
+            }
+        }
+    }
+    //program should compare between user pick and computer pick
+    function playRound(humanChoice,computerChoice){
+        if(humanChoice==='rock' && computerChoice==='scissors'){
+            console.log('You win!'+ humanChoice+ ' beats '+computerChoice )
+            return 1
+        }else if (humanChoice==='paper' && computerChoice==='rock'){
+            console.log('You win!'+ humanChoice+ ' beats '+computerChoice )
+            return 1
+        }else if (humanChoice==='scissors' && computerChoice==='paper'){
+            console.log('You win!'+ humanChoice+ ' beats '+computerChoice)
+            return 1
+        }else if(humanChoice==computerChoice){
+            console.log("It's a tie you both choose "+ humanChoice)
+            return 2
+        }else{
+            console.log('You lose!'+ computerChoice+ ' beats '+ humanChoice)
+            return 0
+        }
+    }
+    playGame()
+</script>
